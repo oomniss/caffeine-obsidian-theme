@@ -1,10 +1,10 @@
-<h1 style="text-align: center; font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-weight: bold;">coffee</h1>
+<h1 style="text-align: center; font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-weight: bold;">caffeine</h1>
 
-![coffee theme overview](Imagens/overview.webp)
+![caffeine theme overview](Imagens/overview.webp)
 
-A warm and comfortable theme for Obsidian, designed to make your notes easier on the eyes without sacrificing flexibility. Built around a carefully crafted brown palette, <span style="font-family: 'EB Garamond', Georgia, serif;"><strong><em>coffee</em></strong></span> also offers a neutral gray palette and a fully customizable option. With the latter, you choose a single color, and the theme automatically generates a cohesive palette based on its hue and saturation, adapting it to both light and dark modes.
+A warm and comfortable theme for Obsidian, designed to make your notes easier on the eyes without sacrificing flexibility. Built around a carefully crafted brown palette, <span style="font-family: 'EB Garamond', Georgia, serif;"><strong><em>caffeine</em></strong></span> also offers a neutral gray palette and a fully customizable option. With the latter, you choose a single color, and the theme automatically generates a cohesive palette based on its hue and saturation, adapting it to both light and dark modes.
 
-Through the **Style Settings** plugin, you can customize the color palette, typography, table styles, and more. <span style="font-family: 'EB Garamond', Georgia, serif;"><strong><em>coffee</em></strong></span> is also compatible with the **LaTeX-like Theorem & Equation Referencer** plugin, offering six theorem layouts and additional options for customizing theorem text and titles.
+Through the **Style Settings** plugin, you can customize the color palette, typography, table styles, and more. <span style="font-family: 'EB Garamond', Georgia, serif;"><strong><em>caffeine</em></strong></span> is also compatible with the **LaTeX-like Theorem & Equation Referencer** plugin, offering six theorem layouts and additional options for customizing theorem text and titles.
 
 # Palettes
 
@@ -24,7 +24,7 @@ The theme is compatible with the LaTeX-like Theorem & Equation Referencer plugin
 
 ![Theorem styles](Imagens/theorem.png)
 
-To enable these custom styles, open the plugin settings and go to Global → Theorem callouts - general. Change the Style option to Custom. Then, simply choose your preferred theorem style from the <span style="font-family: 'EB Garamond', Georgia, serif;"><strong><em>coffee</em></strong></span> theme options in Style Settings.
+To enable these custom styles, open the plugin settings and go to Global → Theorem callouts - general. Change the Style option to Custom. Then, simply choose your preferred theorem style from the <span style="font-family: 'EB Garamond', Georgia, serif;"><strong><em>caffeine</em></strong></span> theme options in Style Settings.
 
 # Tables
 
