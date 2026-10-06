@@ -1,0 +1,676 @@
+/* @settings
+
+name: coffee
+id: coffee
+settings:
+    -
+        id: paleta
+        title: Palette
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: paleta-cores
+        title: Color palette
+        type: class-select
+        allowEmpty: false
+        default: paleta-marrom
+        options:
+            -
+                label: Brown
+                value: paleta-marrom
+            -
+                label: Gray
+                value: paleta-cinza
+            -
+                label: Custom
+                value: paleta-personalizada
+    -
+        id: cor-personalizada
+        title: Custom palette color
+        description: Only takes effect when the Custom option of the color palette is active; uses the hue and saturation of the chosen color
+        type: variable-color
+        format: hsl-split
+        opacity: false
+        default: '#957F6A'
+    -
+        id: tipografia
+        title: Typography
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: font-text-theme
+        title: Body text font
+        type: variable-text
+        default: '"Geist", system-ui, sans-serif'
+    -
+        id: inline-title-font
+        title: Note title font
+        type: variable-text
+        default: '"EB Garamond", Garamond, Georgia, serif'
+    -
+        id: inline-title-size
+        title: Note title size
+        type: variable-number
+        default: 22
+        format: pt
+    -
+        id: inline-title-weight
+        title: Note title weight
+        type: variable-number-slider
+        default: 450
+        min: 100
+        max: 900
+        step: 50
+    -
+        id: inline-title-margin-bottom
+        title: Space below note title
+        type: variable-number
+        default: 2.5
+        format: em
+    -
+        id: h1-font
+        title: Primary heading (H1) font
+        type: variable-text
+        default: '"EB Garamond", Garamond, Georgia, serif'
+    -
+        id: estilo-hiperlink
+        title: Hyperlink style
+        description: Small caps or normal text for hyperlinks
+        type: class-select
+        allowEmpty: false
+        default: hiperlink-versalete
+        options:
+            -
+                label: Small caps
+                value: hiperlink-versalete
+            -
+                label: Normal
+                value: hiperlink-normal
+    -
+        id: teoremas
+        title: Theorems
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: layout-teorema
+        title: Theorem layout
+        description: Chooses the appearance of the theorem callouts from the LaTeX-like Theorem & Equation Referencer plugin
+        type: class-select
+        allowEmpty: false
+        default: teorema-filetes
+        options:
+            -
+                label: Rules
+                value: teorema-filetes
+            -
+                label: Classic
+                value: teorema-classico
+            -
+                label: Side bar
+                value: teorema-barra
+            -
+                label: Ruled header
+                value: teorema-cabecalho
+            -
+                label: Header band
+                value: teorema-faixa
+            -
+                label: Tabbed frame
+                value: teorema-aba
+    -
+        id: estilo-texto-teorema
+        title: Theorem text style
+        description: Italic or upright text in all theorems
+        type: class-select
+        allowEmpty: false
+        default: texto-teorema-italico
+        options:
+            -
+                label: Italic
+                value: texto-teorema-italico
+            -
+                label: Upright
+                value: texto-teorema-reto
+    -
+        id: peso-titulo-teorema
+        title: Theorem title and type weight
+        description: The type is the label (e.g., Theorem 2.1) and the title is the name in parentheses
+        type: class-select
+        allowEmpty: false
+        default: titulo-teorema-negrito
+        options:
+            -
+                label: Bold
+                value: titulo-teorema-negrito
+            -
+                label: Normal
+                value: titulo-teorema-normal
+    -
+        id: tabelas
+        title: Tables
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: estilo-tabela
+        title: Table style
+        description: The horizontal lines option removes column borders and highlights the header with 2pt rules
+        type: class-select
+        allowEmpty: false
+        default: tabela-linhas
+        options:
+            -
+                label: Horizontal lines
+                value: tabela-linhas
+            -
+                label: Obsidian default
+                value: tabela-padrao
+
+*/
+
+body {
+  --font-text-theme: "Geist", system-ui, sans-serif;
+
+  --inline-title-font: "EB Garamond", Garamond, Georgia, serif;
+  --inline-title-size: 22pt;
+  --inline-title-style: italic;
+  --inline-title-weight: 450;
+  --inline-title-color: var(--text-normal);
+  --inline-title-margin-bottom: 2.5em;
+
+  --h1-font: "EB Garamond", Garamond, Georgia, serif;
+
+  --metadata-display-editing: none;
+  --metadata-display-reading: none;
+
+  --link-decoration: none;
+  --link-decoration-hover: none;
+  --link-decoration-active: none;
+
+  --link-external-decoration: none;
+  --link-external-decoration-hover: none;
+  --link-external-decoration-active: none;
+
+  --font-monospace: "JetBrains Mono", monospace;
+
+  --linha-contraste: 22%;
+  --linha-cor: color-mix(in srgb, var(--text-normal) var(--linha-contraste), var(--background-primary));
+}
+
+.inline-title {
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.theme-dark {
+  --background-primary: #120F0C;
+  --background-primary-alt: #1A1612;
+  --background-secondary: #1A1612;
+  --background-secondary-alt: #120F0C;
+
+  --background-modifier-hover: #25201B;
+  --interactive-normal: #25201B;
+  --interactive-hover: #2F2922;
+
+  --background-modifier-border: #25201B;
+  --background-modifier-border-hover: #2F2922;
+  --background-modifier-form-field: #25201B;
+
+  --text-normal: #E4DFDA;
+  --text-inactive: #BEB7AF;
+  --text-muted: #9A938B;
+  --text-faint: #6F6A63;
+
+  --inline-code-color: #86EAD1;
+}
+
+.theme-light {
+  --background-primary: #F3F0ED;
+  --background-primary-alt: #EDE9E5;
+  --background-secondary: #EDE9E5;
+  --background-secondary-alt: #F3F0ED;
+
+  --background-modifier-hover: #E4DFDA;
+  --background-modifier-border: #E4DFDA;
+  --background-modifier-border-hover: #DDD6D0;
+  --background-modifier-form-field: #F8F6F4;
+
+  --interactive-normal: #F8F6F4;
+  --interactive-hover: #FCFBF9;
+
+  --text-normal: #25201B;
+  --text-inactive: #504841;
+  --text-muted: #746C65;
+  --text-faint: #9C9690;
+
+  --inline-code-color: #097157;
+}
+
+body.paleta-cinza.theme-dark {
+  --background-primary: #0F0F0F;
+  --background-primary-alt: #161616;
+  --background-secondary: #161616;
+  --background-secondary-alt: #0F0F0F;
+
+  --background-modifier-hover: #202020;
+  --interactive-normal: #202020;
+  --interactive-hover: #292929;
+
+  --background-modifier-border: #202020;
+  --background-modifier-border-hover: #292929;
+  --background-modifier-form-field: #202020;
+}
+
+body.paleta-cinza.theme-light {
+  --background-primary: #F0F0F0;
+  --background-primary-alt: #E9E9E9;
+  --background-secondary: #E9E9E9;
+  --background-secondary-alt: #F0F0F0;
+
+  --background-modifier-hover: #DFDFDF;
+  --background-modifier-border: #DFDFDF;
+  --background-modifier-border-hover: #D7D7D7;
+  --background-modifier-form-field: #F6F6F6;
+
+  --interactive-normal: #F6F6F6;
+  --interactive-hover: #FBFBFB;
+}
+
+body.paleta-personalizada {
+  --paleta-h: var(--cor-personalizada-h, 30);
+  --paleta-s: var(--cor-personalizada-s, 17%);
+}
+
+body.paleta-personalizada.theme-dark {
+  --background-primary: hsl(var(--paleta-h), var(--paleta-s), 6%);
+  --background-primary-alt: hsl(var(--paleta-h), var(--paleta-s), 9%);
+  --background-secondary: hsl(var(--paleta-h), var(--paleta-s), 9%);
+  --background-secondary-alt: hsl(var(--paleta-h), var(--paleta-s), 6%);
+
+  --background-modifier-hover: hsl(var(--paleta-h), var(--paleta-s), 12.5%);
+  --interactive-normal: hsl(var(--paleta-h), var(--paleta-s), 12.5%);
+  --interactive-hover: hsl(var(--paleta-h), var(--paleta-s), 16%);
+
+  --background-modifier-border: hsl(var(--paleta-h), var(--paleta-s), 12.5%);
+  --background-modifier-border-hover: hsl(var(--paleta-h), var(--paleta-s), 16%);
+  --background-modifier-form-field: hsl(var(--paleta-h), var(--paleta-s), 12.5%);
+}
+
+body.paleta-personalizada.theme-light {
+  --background-primary: hsl(var(--paleta-h), var(--paleta-s), 94%);
+  --background-primary-alt: hsl(var(--paleta-h), var(--paleta-s), 91.5%);
+  --background-secondary: hsl(var(--paleta-h), var(--paleta-s), 91.5%);
+  --background-secondary-alt: hsl(var(--paleta-h), var(--paleta-s), 94%);
+
+  --background-modifier-hover: hsl(var(--paleta-h), var(--paleta-s), 87.5%);
+  --background-modifier-border: hsl(var(--paleta-h), var(--paleta-s), 87.5%);
+  --background-modifier-border-hover: hsl(var(--paleta-h), var(--paleta-s), 84%);
+  --background-modifier-form-field: hsl(var(--paleta-h), var(--paleta-s), 96.5%);
+
+  --interactive-normal: hsl(var(--paleta-h), var(--paleta-s), 96.5%);
+  --interactive-hover: hsl(var(--paleta-h), var(--paleta-s), 98.5%);
+}
+
+.markdown-source-view .cm-line {
+  color: var(--text-inactive);
+  transition: color 0.15s ease;
+}
+
+.markdown-source-view .cm-line.cm-active {
+  color: var(--text-normal);
+}
+
+.markdown-rendered a.internal-link,
+.markdown-rendered a.external-link {
+  font-variant: small-caps;
+  font-weight: 450;
+  text-decoration: none !important;
+}
+
+.markdown-source-view.mod-cm6 .cm-hmd-internal-link .cm-underline,
+.markdown-source-view.mod-cm6 .cm-link .cm-underline,
+.markdown-source-view.mod-cm6 .cm-url .cm-underline {
+  font-variant: small-caps;
+  font-weight: 450;
+  text-decoration: none !important;
+}
+
+.cm-hmd-internal-link,
+.cm-link,
+.cm-url,
+.cm-underline {
+  text-decoration: none !important;
+}
+
+.markdown-rendered a.internal-link:hover,
+.markdown-rendered a.external-link:hover,
+.markdown-source-view.mod-cm6 .cm-hmd-internal-link:hover .cm-underline,
+.markdown-source-view.mod-cm6 .cm-link:hover .cm-underline,
+.markdown-source-view.mod-cm6 .cm-url:hover .cm-underline,
+.cm-hmd-internal-link:hover,
+.cm-link:hover,
+.cm-url:hover,
+.cm-underline:hover {
+  text-decoration: none !important;
+}
+
+body.hiperlink-normal .markdown-rendered a.internal-link,
+body.hiperlink-normal .markdown-rendered a.external-link,
+body.hiperlink-normal .markdown-source-view.mod-cm6 .cm-hmd-internal-link .cm-underline,
+body.hiperlink-normal .markdown-source-view.mod-cm6 .cm-link .cm-underline,
+body.hiperlink-normal .markdown-source-view.mod-cm6 .cm-url .cm-underline {
+  font-variant: normal;
+}
+
+.markdown-rendered code,
+.markdown-rendered pre,
+.markdown-rendered pre code,
+.markdown-rendered .cm-inline-code,
+.markdown-source-view .cm-inline-code,
+.markdown-source-view .HyperMD-codeblock,
+.markdown-source-view .HyperMD-codeblock span,
+.markdown-source-view .cm-line.HyperMD-codeblock,
+.cm-editor .cm-content .cm-line.HyperMD-codeblock,
+.cm-editor .cm-content .cm-inline-code {
+  font-family: "JetBrains Mono", monospace !important;
+}
+
+.markdown-rendered :not(pre) > code,
+.markdown-source-view .cm-inline-code,
+.cm-editor .cm-content .cm-inline-code {
+  color: var(--inline-code-color) !important;
+}
+
+.theorem-callout {
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid var(--text-normal);
+  border-bottom: 1px solid var(--text-normal);
+  border-radius: 0;
+  padding: 0.6em 0;
+  margin: 1.5em 0;
+  font-family: "STIX Two Text", serif;
+  color: var(--text-normal);
+  --callout-color: var(--text-normal-rgb, 0, 0, 0);
+}
+
+.theorem-callout > .callout-title {
+  color: var(--text-normal);
+}
+
+.theorem-callout > .callout-title > .callout-icon {
+  display: none;
+}
+
+.theorem-callout > .callout-title {
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+
+.theorem-callout > .callout-title > .callout-title-inner {
+  display: inline;
+}
+
+.theorem-callout-main-title {
+  font-weight: bold;
+  font-style: normal;
+}
+
+.theorem-callout-subtitle {
+  font-weight: bold;
+}
+
+.theorem-callout > .callout-content {
+  font-style: italic;
+}
+
+.theorem-callout > .callout-content {
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+
+.theorem-callout > .callout-content > p {
+  display: inline;
+  margin: 0;
+}
+
+.theorem-callout > .callout-title::after {
+  content: " ";
+}
+
+body.teorema-classico .theorem-callout {
+  border: none;
+  padding: 0;
+  margin: 1.25em 0;
+}
+
+body.teorema-barra .theorem-callout {
+  border: none;
+  border-left: 2pt solid var(--text-faint);
+  padding: 0.2em 0 0.2em 1.1em;
+  margin: 1.5em 0;
+}
+
+body.teorema-barra .theorem-callout > .callout-title {
+  display: block;
+  margin-bottom: 0.35em;
+}
+
+body.teorema-barra .theorem-callout > .callout-title::after {
+  content: none;
+}
+
+body.teorema-barra .theorem-callout > .callout-content {
+  display: block;
+}
+
+body.teorema-barra .theorem-callout > .callout-content > p {
+  display: block;
+  margin: 0 0 0.5em;
+}
+
+body.teorema-barra .theorem-callout > .callout-content > p:last-child {
+  margin-bottom: 0;
+}
+
+body.teorema-cabecalho .theorem-callout {
+  border: none;
+  border-bottom: 1pt solid var(--text-normal);
+  padding: 0 0 0.7em;
+  margin: 1.75em 0;
+}
+
+body.teorema-cabecalho .theorem-callout > .callout-title {
+  display: block;
+  padding-bottom: 0.45em;
+  margin-bottom: 0.9em;
+  border-bottom: 1pt solid var(--text-normal);
+}
+
+body.teorema-cabecalho .theorem-callout > .callout-title::before {
+  font-size: 0.75em;
+  margin-right: 0.6em;
+}
+
+body.teorema-cabecalho .theorem-callout > .callout-title::after {
+  content: none;
+}
+
+body.teorema-cabecalho .theorem-callout-subtitle {
+  font-weight: bold;
+}
+
+body.teorema-cabecalho .theorem-callout > .callout-content {
+  display: block;
+  text-align: justify;
+  hyphens: auto;
+}
+
+body.teorema-cabecalho .theorem-callout > .callout-content > p {
+  display: block;
+  margin: 0;
+}
+
+body.teorema-cabecalho .theorem-callout > .callout-content > p + p {
+  text-indent: 1.5em;
+}
+
+body.teorema-faixa .theorem-callout {
+  border: 0.75pt solid var(--text-faint);
+  border-radius: 3px;
+  padding: 0;
+  margin: 1.75em 0;
+}
+
+body.teorema-faixa .theorem-callout > .callout-title {
+  display: block;
+  padding: 0.45em 0.9em;
+  background-color: var(--background-secondary);
+  border-bottom: 0.75pt solid var(--text-faint);
+  border-radius: 3px 3px 0 0;
+  font-family: "EB Garamond", Garamond, Georgia, serif;
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+}
+
+body.teorema-faixa .theorem-callout > .callout-title::after {
+  content: none;
+}
+
+body.teorema-faixa .theorem-callout-subtitle {
+  font-variant: normal;
+  letter-spacing: normal;
+}
+
+body.teorema-faixa .theorem-callout > .callout-content {
+  display: block;
+  padding: 0.75em 0.9em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+body.teorema-faixa .theorem-callout > .callout-content > p {
+  display: block;
+  margin: 0;
+}
+
+body.teorema-faixa .theorem-callout > .callout-content > p + p {
+  text-indent: 1.5em;
+}
+
+body.teorema-aba .theorem-callout {
+  --teorema-aba-cor: var(--linha-cor);
+  --aba-borda: 1.5pt;
+  --aba-altura: 2.1em;
+  position: relative;
+  overflow: visible;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0 calc(var(--aba-borda) + 1.4em) calc(var(--aba-borda) + 0.9em);
+  margin: 1.75em 0;
+}
+
+body.teorema-aba .theorem-callout::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--aba-altura) / 2 - var(--aba-borda) / 2);
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: var(--aba-borda) solid var(--teorema-aba-cor);
+  pointer-events: none;
+}
+
+body.teorema-aba .theorem-callout > .callout-title {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  min-height: var(--aba-altura);
+  box-sizing: border-box;
+  padding: 0 0.75em;
+  margin: 0 0 0.6em;
+  background-color: var(--teorema-aba-cor);
+  color: var(--text-normal);
+  line-height: 1.25;
+}
+
+body.teorema-aba .theorem-callout > .callout-title::after {
+  content: none;
+}
+
+body.teorema-aba .theorem-callout > .callout-content {
+  position: relative;
+  z-index: 1;
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+body.teorema-aba .theorem-callout > .callout-content > p {
+  display: block;
+  margin: 0 0 0.5em;
+}
+
+body.teorema-aba .theorem-callout > .callout-content > p:last-child {
+  margin-bottom: 0;
+}
+
+body.texto-teorema-italico .theorem-callout > .callout-content {
+  font-style: italic;
+}
+
+body.texto-teorema-reto .theorem-callout > .callout-content {
+  font-style: normal;
+}
+
+body.titulo-teorema-negrito .theorem-callout-main-title,
+body.titulo-teorema-negrito .theorem-callout-subtitle {
+  font-weight: bold;
+}
+
+body.titulo-teorema-normal .theorem-callout-main-title,
+body.titulo-teorema-normal .theorem-callout-subtitle {
+  font-weight: normal;
+}
+
+table,
+.table-wrapper {
+  margin-inline: auto;
+}
+
+@media print {
+  table {
+    margin-inline: auto;
+  }
+}
+
+body.tabela-linhas {
+  --table-border-color: var(--linha-cor);
+  --table-header-border-color: var(--linha-cor);
+}
+
+body.tabela-linhas table {
+  border-collapse: collapse;
+}
+
+body.tabela-linhas th,
+body.tabela-linhas td {
+  border-left: none !important;
+  border-right: none !important;
+  border-top: var(--table-border-width) solid var(--table-border-color) !important;
+  border-bottom: var(--table-border-width) solid var(--table-border-color) !important;
+}
+
+body.tabela-linhas th {
+  border-top: 2pt solid var(--table-header-border-color) !important;
+  border-bottom: 2pt solid var(--table-header-border-color) !important;
+}
