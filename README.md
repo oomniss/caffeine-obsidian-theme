@@ -1,6 +1,6 @@
-<h1 style="text-align: center; font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-weight: bold;">coffee</h1> 
+<h1 style="text-align: center; font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-weight: bold;">coffee</h1>
 
-![coffee theme overview](<imagens/overview.webp>)
+![coffee theme overview](Imagens/overview.webp)
 
 A warm and comfortable theme for Obsidian, designed to make your notes easier on the eyes without sacrificing flexibility. Built around a carefully crafted brown palette, <span style="font-family: 'EB Garamond', Georgia, serif;"><strong><em>coffee</em></strong></span> also offers a neutral gray palette and a fully customizable option. With the latter, you choose a single color, and the theme automatically generates a cohesive palette based on its hue and saturation, adapting it to both light and dark modes.
 
@@ -10,26 +10,28 @@ Through the **Style Settings** plugin, you can customize the color palette, typo
 
 The Brown Palette is the default, built around warm, earthy tones for a calm reading experience. Gray provides a more neutral alternative, preserving the same visual language with a balanced grayscale.
 
-![Color palettes](<imagens/palettes.png>)
+![Color palettes](Imagens/palettes.png)
 
 The **Custom Palette** lets you create a color scheme based on any color of your choice. Simply select a color through Style Settings, and the theme generates the rest of the palette from its hue and saturation. The resulting colors are adjusted for the selected mode, creating a cohesive appearance in both light and dark modes while maintaining the theme's visual balance.
 
-![Custom palette in light mode](<imagens/custom_palette_light.gif>) 
-![Custom palette in dark mode](<imagens/custom_palette_dark.gif>)
+![Custom palette in light mode](Imagens/custom_palette_light.gif)
+
+![Custom palette in dark mode](Imagens/custom_palette_dark.gif)
 
 # Theorem Styles
 
 The theme is compatible with the LaTeX-like Theorem & Equation Referencer plugin and offers six distinct theorem styles: **Ruled Header**, **Rules**, **Side bar**, **Classic**, **Tabbed Frame**, and **Header band**. Through **Style Settings**, you can also customize theorem text, choosing between italic and upright styles, as well as the weight of theorem types and titles, with bold and normal options.
 
-![Theorem styles](<imagens/theorem.png>)
+![Theorem styles](Imagens/theorem.png)
 
 To enable these custom styles, open the plugin settings and go to Global → Theorem callouts - general. Change the Style option to Custom. Then, simply choose your preferred theorem style from the <span style="font-family: 'EB Garamond', Georgia, serif;"><strong><em>coffee</em></strong></span> theme options in Style Settings.
 
-# Tables  
+# Tables
 
 Two table styles are available through Style Settings: **Horizontal lines** and **Obsidian default**. The Horizontal lines style removes vertical column borders and emphasizes the table header with stronger horizontal rules for a cleaner, more structured appearance, while Obsidian default preserves the standard Obsidian table style.
 
-![Theorem styles](<imagens/tables.png>)
+![Tables](Imagens/tables.png)
+
 # Fonts
 
 For the theme to work as intended, it is recommended to install the following fonts:
