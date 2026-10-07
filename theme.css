@@ -323,38 +323,38 @@ body.paleta-personalizada.theme-light {
   color: var(--text-normal);
 }
 
-.markdown-rendered a.internal-link,
-.markdown-rendered a.external-link {
+body .markdown-rendered a.internal-link,
+body .markdown-rendered a.external-link {
   font-variant: small-caps;
   font-weight: 450;
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
-.markdown-source-view.mod-cm6 .cm-hmd-internal-link .cm-underline,
-.markdown-source-view.mod-cm6 .cm-link .cm-underline,
-.markdown-source-view.mod-cm6 .cm-url .cm-underline {
+body .markdown-source-view.mod-cm6 .cm-editor .cm-hmd-internal-link .cm-underline,
+body .markdown-source-view.mod-cm6 .cm-editor .cm-link .cm-underline,
+body .markdown-source-view.mod-cm6 .cm-editor .cm-url .cm-underline {
   font-variant: small-caps;
   font-weight: 450;
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
-.cm-hmd-internal-link,
-.cm-link,
-.cm-url,
-.cm-underline {
-  text-decoration: none !important;
+body .markdown-source-view.mod-cm6 .cm-editor .cm-hmd-internal-link,
+body .markdown-source-view.mod-cm6 .cm-editor .cm-link,
+body .markdown-source-view.mod-cm6 .cm-editor .cm-url,
+body .markdown-source-view.mod-cm6 .cm-editor .cm-underline {
+  text-decoration: none;
 }
 
-.markdown-rendered a.internal-link:hover,
-.markdown-rendered a.external-link:hover,
-.markdown-source-view.mod-cm6 .cm-hmd-internal-link:hover .cm-underline,
-.markdown-source-view.mod-cm6 .cm-link:hover .cm-underline,
-.markdown-source-view.mod-cm6 .cm-url:hover .cm-underline,
-.cm-hmd-internal-link:hover,
-.cm-link:hover,
-.cm-url:hover,
-.cm-underline:hover {
-  text-decoration: none !important;
+body .markdown-rendered a.internal-link:hover,
+body .markdown-rendered a.external-link:hover,
+body .markdown-source-view.mod-cm6 .cm-editor .cm-hmd-internal-link:hover .cm-underline,
+body .markdown-source-view.mod-cm6 .cm-editor .cm-link:hover .cm-underline,
+body .markdown-source-view.mod-cm6 .cm-editor .cm-url:hover .cm-underline,
+body .markdown-source-view.mod-cm6 .cm-editor .cm-hmd-internal-link:hover,
+body .markdown-source-view.mod-cm6 .cm-editor .cm-link:hover,
+body .markdown-source-view.mod-cm6 .cm-editor .cm-url:hover,
+body .markdown-source-view.mod-cm6 .cm-editor .cm-underline:hover {
+  text-decoration: none;
 }
 
 body.hiperlink-normal .markdown-rendered a.internal-link,
@@ -375,13 +375,13 @@ body.hiperlink-normal .markdown-source-view.mod-cm6 .cm-url .cm-underline {
 .markdown-source-view .cm-line.HyperMD-codeblock,
 .cm-editor .cm-content .cm-line.HyperMD-codeblock,
 .cm-editor .cm-content .cm-inline-code {
-  font-family: "JetBrains Mono", monospace !important;
+  font-family: var(--font-monospace);
 }
 
 .markdown-rendered :not(pre) > code,
 .markdown-source-view .cm-inline-code,
 .cm-editor .cm-content .cm-inline-code {
-  color: var(--inline-code-color) !important;
+  color: var(--inline-code-color);
 }
 
 .theorem-callout {
@@ -662,15 +662,15 @@ body.tabela-linhas table {
   border-collapse: collapse;
 }
 
-body.tabela-linhas th,
-body.tabela-linhas td {
-  border-left: none !important;
-  border-right: none !important;
-  border-top: var(--table-border-width) solid var(--table-border-color) !important;
-  border-bottom: var(--table-border-width) solid var(--table-border-color) !important;
+body.tabela-linhas .markdown-rendered table th,
+body.tabela-linhas .markdown-rendered table td {
+  border-left: none;
+  border-right: none;
+  border-top: var(--table-border-width) solid var(--table-border-color);
+  border-bottom: var(--table-border-width) solid var(--table-border-color);
 }
 
-body.tabela-linhas th {
-  border-top: 2pt solid var(--table-header-border-color) !important;
-  border-bottom: 2pt solid var(--table-header-border-color) !important;
+body.tabela-linhas .markdown-rendered table th {
+  border-top: 2pt solid var(--table-header-border-color);
+  border-bottom: 2pt solid var(--table-header-border-color);
 }
