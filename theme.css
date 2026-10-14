@@ -106,6 +106,9 @@ settings:
                 label: Rules
                 value: teorema-filetes
             -
+                label: Frame
+                value: teorema-quadro
+            -
                 label: Classic
                 value: teorema-classico
             -
@@ -168,6 +171,24 @@ settings:
             -
                 label: Obsidian default
                 value: tabela-padrao
+    -
+        id: interface
+        title: Interface
+        type: heading
+        level: 1
+        collapsed: false
+    -
+        id: ocultar-trilha
+        title: Hide file breadcrumb
+        description: Hides the folder path and the note name in the header
+        type: class-toggle
+        default: false
+    -
+        id: abas-sempre-visiveis
+        title: Always show tab bar
+        description: Disables the behavior that hides the tab bars until the mouse hovers over them
+        type: class-toggle
+        default: false
 
 */
 
@@ -203,6 +224,74 @@ body {
 .inline-title {
   text-align: center;
   padding-top: 3rem;
+}
+
+.view-header-title-container {
+  justify-content: center;
+}
+
+.view-header-title-container .view-header-title-parent,
+.view-header-title-container .view-header-title {
+  flex-grow: 0;
+}
+
+body.ocultar-trilha .view-header-title-container {
+  visibility: hidden;
+}
+
+.status-bar {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.status-bar:hover {
+  opacity: 1;
+}
+
+body:not(.abas-sempre-visiveis) .workspace-tabs {
+  position: relative;
+}
+
+body:not(.abas-sempre-visiveis) .workspace-tabs > .workspace-tab-header-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: var(--background-primary);
+  border-bottom: none;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+body:not(.abas-sempre-visiveis) .workspace-tabs > .workspace-tab-header-container::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  pointer-events: auto;
+}
+
+body:not(.abas-sempre-visiveis):has(.workspace-tabs > .workspace-tab-header-container:hover) .workspace-tabs > .workspace-tab-header-container {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body:not(.abas-sempre-visiveis) .workspace-tabs > .workspace-tab-header-container .workspace-tab-header,
+body:not(.abas-sempre-visiveis) .workspace-tabs > .workspace-tab-header-container .workspace-tab-header.is-active {
+  background-color: var(--background-secondary);
+  border-radius: var(--radius-m);
+  margin: 4px 2px;
+}
+
+body:not(.abas-sempre-visiveis) .workspace-tabs > .workspace-tab-header-container .workspace-tab-header.is-active::before,
+body:not(.abas-sempre-visiveis) .workspace-tabs > .workspace-tab-header-container .workspace-tab-header.is-active::after {
+  content: none;
 }
 
 .theme-dark {
@@ -441,6 +530,11 @@ body.hiperlink-normal .markdown-source-view.mod-cm6 .cm-url .cm-underline {
 
 .theorem-callout > .callout-title::after {
   content: " ";
+}
+
+body.teorema-quadro .theorem-callout {
+  border: 1px solid var(--text-normal);
+  padding: 0.6em 0.9em;
 }
 
 body.teorema-classico .theorem-callout {
