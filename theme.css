@@ -189,14 +189,34 @@ settings:
                 label: caffeine
                 value: abas-flutuantes
             -
-                label: obsidian
+                label: Obsidian
                 value: abas-padrao
     -
         id: barra-dinamica
-        title: Dynamic tab bar
+        title: Dynamic bar
         description: When on, the tab bar, header bar, sidebar icons and collapse buttons are hidden and slide down from the top when hovering the top edge
         type: class-toggle
         default: true
+    -
+        id: titulo-janela
+        title: Title bar text
+        description: Choose which parts of the title bar text are shown
+        type: class-select
+        allowEmpty: false
+        default: titulo-versao
+        options:
+            -
+                label: Default (all three)
+                value: titulo-todos
+            -
+                label: None
+                value: titulo-nenhum
+            -
+                label: Vault name only
+                value: titulo-vault
+            -
+                label: Obsidian version only
+                value: titulo-versao
 */
 
 body {
@@ -227,7 +247,9 @@ body {
   --linha-contraste: 22%;
   --linha-cor: color-mix(in srgb, var(--text-normal) var(--linha-contraste), var(--background-primary));
 
-  --zona-ativacao: 48px;
+  --zona-ativacao: var(--header-height);
+  --titulo-texto-vault: "Obsidian-vault";
+  --titulo-texto-versao: "Obsidian 1.14.4";
 }
 
 body.abas-flutuantes {
@@ -290,17 +312,60 @@ body.abas-flutuantes .view-header-title {
   flex-grow: 0;
 }
 
-body.barra-dinamica.abas-flutuantes .titlebar {
+body.barra-dinamica .titlebar {
   border-bottom: var(--divider-width) solid var(--divider-color);
-  transition: border-bottom-color 0.2s ease;
+  transition: border-bottom-color 0.2s ease 0.15s;
 }
 
-body.barra-dinamica.abas-flutuantes:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover) .titlebar {
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .titlebar {
   border-bottom-color: transparent;
 }
 
-body.abas-flutuantes .titlebar-text {
+body.titulo-nenhum .titlebar-text {
   display: none;
+}
+
+body:is(.titulo-vault, .titulo-versao) .titlebar-text {
+  font-size: 0;
+}
+
+body:is(.titulo-vault, .titulo-versao) .titlebar-text::before {
+  font-size: var(--font-ui-small);
+}
+
+body.titulo-vault .titlebar-text::before {
+  content: var(--titulo-texto-vault);
+}
+
+body.titulo-versao .titlebar-text::before {
+  content: var(--titulo-texto-versao);
+}
+
+body.is-hidden-frameless.barra-dinamica .workspace-tab-header-container-inner,
+body.is-hidden-frameless.barra-dinamica .workspace-tab-header-spacer {
+  -webkit-app-region: no-drag;
+}
+
+body.is-hidden-frameless.barra-dinamica .titlebar-button-container.mod-right .titlebar-button:not(:hover) {
+  background-color: var(--background-primary);
+  background-image: linear-gradient(var(--background-secondary), var(--background-secondary));
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: 100% 0;
+  transition: background-size 0.2s ease 0.15s;
+}
+
+body.is-hidden-frameless:not(.barra-dinamica) .titlebar-button-container.mod-right .titlebar-button:not(:hover) {
+  background-color: var(--background-secondary);
+}
+
+body.is-hidden-frameless.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .titlebar-button-container.mod-right .titlebar-button:not(:hover) {
+  background-size: 100% 100%;
+  transition: background-size 0.2s ease;
+}
+
+body.is-hidden-frameless.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .titlebar-button-container.mod-right .titlebar-button:not(:hover) {
+  transition: background-size 0.2s ease 0.1s;
 }
 
 body.barra-dinamica .workspace-tabs {
@@ -316,7 +381,7 @@ body.barra-dinamica .workspace-tabs > .workspace-tab-header-container {
   z-index: 10;
   transform: translateY(-100%);
   visibility: hidden;
-  transition: transform 0.2s ease, visibility 0s linear 0.2s;
+  transition: transform 0.2s ease 0.15s, visibility 0s linear 0.35s;
 }
 
 body.barra-dinamica .workspace-tabs > .workspace-tab-header-container::after {
@@ -340,15 +405,15 @@ body.barra-dinamica .workspace-tabs .view-header {
   right: 0;
   z-index: 9;
   background-color: var(--background-primary);
-  transform: translateY(calc(-100% - var(--header-height)));
-  visibility: hidden;
-  transition: transform 0.2s ease, visibility 0s linear 0.2s;
+  opacity: 0;
+  transform: translateY(calc(-1 * var(--header-height)));
+  transition: transform 0.2s ease 0.15s, opacity 0.2s ease 0.15s;
 }
 
 body.barra-dinamica .workspace-ribbon .sidebar-toggle-button {
   transform: translateY(-100%);
   visibility: hidden;
-  transition: transform 0.2s ease, visibility 0s linear 0.2s;
+  transition: transform 0.2s ease 0.15s, visibility 0s linear 0.35s;
 }
 
 body.barra-dinamica .workspace-ribbon .side-dock-actions {
@@ -365,49 +430,67 @@ body.barra-dinamica .workspace-ribbon .sidebar-toggle-button::after {
   visibility: visible;
 }
 
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover) .workspace-tabs > .workspace-tab-header-container,
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover) .workspace-tabs .view-header,
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover) .workspace-ribbon .sidebar-toggle-button {
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-tabs > .workspace-tab-header-container,
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-ribbon .sidebar-toggle-button {
   transform: translateY(0);
   visibility: visible;
   transition: transform 0.2s ease, visibility 0s;
 }
 
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover) .workspace-tabs > .workspace-tab-header-container::after {
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-tabs > .workspace-tab-header-container::after {
+  height: calc(2 * var(--header-height));
   visibility: hidden;
   transition: visibility 0s linear 0.4s;
 }
 
-body.barra-dinamica.abas-flutuantes .workspace-ribbon {
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-tabs .view-header {
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform 0.2s ease 0.1s, opacity 0.2s ease 0.1s;
+}
+
+body.barra-dinamica .workspace-ribbon {
   margin-top: 0;
 }
 
-body.barra-dinamica.abas-flutuantes .titlebar {
+body.barra-dinamica .titlebar {
   z-index: calc(var(--layer-sidedock) + 1);
 }
 
-body.barra-dinamica.abas-flutuantes .workspace-ribbon::before {
+body.barra-dinamica .workspace-ribbon::before {
   transform: translateY(-100%);
   visibility: hidden;
-  transition: transform 0.2s ease, visibility 0s linear 0.2s;
+  transition: transform 0.2s ease 0.15s, visibility 0s linear 0.35s;
 }
 
-body.barra-dinamica.abas-flutuantes .workspace-ribbon .side-dock-actions {
-  transition: transform 0.2s ease 0.1s;
+body.barra-dinamica .workspace-ribbon .side-dock-actions {
+  transition: transform 0.2s ease 0.25s;
 }
 
-body.barra-dinamica.abas-flutuantes:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover) .workspace-tabs > .workspace-tab-header-container,
-body.barra-dinamica.abas-flutuantes:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover) .workspace-tabs .view-header,
-body.barra-dinamica.abas-flutuantes:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover) .workspace-ribbon::before,
-body.barra-dinamica.abas-flutuantes:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover) .workspace-ribbon .sidebar-toggle-button {
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-tabs > .workspace-tab-header-container,
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-ribbon::before,
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-ribbon .sidebar-toggle-button {
   transform: translateY(0);
   visibility: visible;
   transition: transform 0.2s ease 0.1s, visibility 0s linear 0.1s;
 }
 
-body.barra-dinamica.abas-flutuantes:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover) .workspace-ribbon .side-dock-actions {
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-ribbon .side-dock-actions {
   transform: translateY(var(--header-height));
   transition: transform 0.2s ease;
+}
+
+body.barra-dinamica .workspace-tabs:has(.workspace-leaf-content:is([data-type="file-explorer"], [data-type="notebook-navigator"])) > .workspace-tab-container {
+  border-top: 0 solid transparent;
+  transition: border-top-width 0.2s ease 0.15s;
+}
+
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-tabs:has(.workspace-leaf-content:is([data-type="file-explorer"], [data-type="notebook-navigator"])) > .workspace-tab-container {
+  border-top-width: var(--header-height);
+}
+
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-tabs:has(.workspace-leaf-content:is([data-type="file-explorer"], [data-type="notebook-navigator"])) > .workspace-tab-container {
+  transition: border-top-width 0.2s ease 0.1s;
 }
 
 body.barra-dinamica .workspace-split.mod-left-split > .workspace-leaf-resize-handle,
