@@ -226,6 +226,20 @@ settings:
             -
                 label: Centered Obsidian icon
                 value: titulo-logo
+    -
+        id: exibicao-propriedades
+        title: Note properties
+        description: Shows or hides the properties of notes in live preview only
+        type: class-select
+        allowEmpty: false
+        default: propriedades-visivel
+        options:
+            -
+                label: Hidden
+                value: propriedades-oculta
+            -
+                label: Visible
+                value: propriedades-visivel
 */
 
 body {
@@ -240,8 +254,9 @@ body {
 
   --h1-font: "EB Garamond", Garamond, Georgia, serif;
 
-  --metadata-display-editing: none;
   --metadata-display-reading: none;
+  --metadata-label-font: var(--font-monospace);
+  --metadata-input-font: var(--font-monospace);
 
   --link-decoration: none;
   --link-decoration-hover: none;
@@ -259,6 +274,10 @@ body {
   --zona-ativacao: var(--header-height);
   --titulo-texto-vault: "Obsidian-vault";
   --titulo-texto-versao: "Obsidian 1.14.4";
+}
+
+body.propriedades-oculta {
+  --metadata-display-editing: none;
 }
 
 body.abas-flutuantes {
@@ -740,6 +759,10 @@ body.hiperlink-normal .markdown-source-view.mod-cm6 .cm-url .cm-underline {
 .markdown-source-view .cm-inline-code,
 .cm-editor .cm-content .cm-inline-code {
   color: var(--inline-code-color);
+}
+
+.metadata-properties-heading .metadata-properties-title {
+  font-family: var(--font-monospace);
 }
 
 .theorem-callout {
