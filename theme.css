@@ -198,9 +198,15 @@ settings:
         type: class-toggle
         default: true
     -
+        id: barra-status-dinamica
+        title: Dynamic status bar
+        description: When on, the status bar is hidden and becomes visible when hovering over its area
+        type: class-toggle
+        default: true
+    -
         id: titulo-janela
         title: Title bar text
-        description: Choose which parts of the title bar text are shown
+        description: Choose which parts of the title bar text are shown, or hide it and center the Obsidian icon
         type: class-select
         allowEmpty: false
         default: titulo-versao
@@ -217,6 +223,9 @@ settings:
             -
                 label: Obsidian version only
                 value: titulo-versao
+            -
+                label: Centered Obsidian icon
+                value: titulo-logo
 */
 
 body {
@@ -321,8 +330,18 @@ body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hove
   border-bottom-color: transparent;
 }
 
-body.titulo-nenhum .titlebar-text {
+body:is(.titulo-nenhum, .titulo-logo) .titlebar-text {
   display: none;
+}
+
+body.titulo-logo .titlebar-button-container.mod-left {
+  position: static;
+}
+
+body.titulo-logo .titlebar-button.mod-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 body:is(.titulo-vault, .titulo-versao) .titlebar-text {
@@ -341,8 +360,20 @@ body.titulo-versao .titlebar-text::before {
   content: var(--titulo-texto-versao);
 }
 
-body.is-hidden-frameless.barra-dinamica .workspace-tab-header-container-inner,
-body.is-hidden-frameless.barra-dinamica .workspace-tab-header-spacer {
+body.is-hidden-frameless.barra-dinamica .workspace-tab-header-container-inner {
+  -webkit-app-region: no-drag;
+}
+
+body.is-hidden-frameless.barra-dinamica:not(.is-grabbing):not(.is-fullscreen) .mod-top .workspace-tab-header-container,
+body.is-hidden-frameless.barra-dinamica:not(.is-grabbing):not(.is-fullscreen) .workspace-tabs.mod-top .workspace-tab-header-spacer {
+  -webkit-app-region: no-drag;
+}
+
+body.is-frameless:not(.is-hidden-frameless).barra-dinamica .workspace-tab-header-container-inner {
+  -webkit-app-region: no-drag;
+}
+
+body.is-frameless:not(.is-hidden-frameless).barra-dinamica:not(.is-grabbing):not(.is-fullscreen) .workspace-tabs.mod-top .workspace-tab-header-spacer {
   -webkit-app-region: no-drag;
 }
 
@@ -500,12 +531,12 @@ body.barra-dinamica .workspace-split.mod-right-split > .workspace-leaf-resize-ha
   z-index: 5;
 }
 
-.status-bar {
+body.barra-status-dinamica .status-bar {
   opacity: 0;
   transition: opacity 0.2s ease;
 }
 
-.status-bar:hover {
+body.barra-status-dinamica .status-bar:hover {
   opacity: 1;
 }
 
