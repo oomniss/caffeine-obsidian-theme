@@ -268,6 +268,7 @@ body.abas-flutuantes {
   --tab-radius: var(--radius-m);
   --tab-radius-active: var(--radius-m);
   --tab-divider-color: transparent;
+  --aba-contorno-cor: var(--background-modifier-border-hover);
 }
 
 .inline-title {
@@ -288,15 +289,30 @@ body.abas-flutuantes .workspace-tab-header {
   border-radius: var(--radius-m);
 }
 
+body.abas-flutuantes .mod-root .workspace-tab-header {
+  border: 1px solid transparent;
+}
+
 body.abas-flutuantes .workspace-tab-header.is-active {
   background-color: var(--background-primary);
   border-radius: var(--radius-m);
   box-shadow: none;
 }
 
+body.abas-flutuantes .mod-root .workspace-tab-header.is-active {
+  border-color: var(--aba-contorno-cor);
+}
+
 body.abas-flutuantes .workspace-tab-header.is-active::before,
 body.abas-flutuantes .workspace-tab-header.is-active::after {
   display: none;
+}
+
+body.abas-flutuantes .mod-root .workspace-tab-header:not(.is-active):has(+ .workspace-tab-header:not(.is-active)) {
+  background-image: linear-gradient(var(--aba-contorno-cor), var(--aba-contorno-cor));
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 1px 44%;
 }
 
 body.abas-flutuantes .workspace-tab-header.is-active .workspace-tab-header-inner {
@@ -326,7 +342,7 @@ body.barra-dinamica .titlebar {
   transition: border-bottom-color 0.2s ease 0.15s;
 }
 
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .titlebar {
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .titlebar {
   border-bottom-color: transparent;
 }
 
@@ -390,12 +406,12 @@ body.is-hidden-frameless:not(.barra-dinamica) .titlebar-button-container.mod-rig
   background-color: var(--background-secondary);
 }
 
-body.is-hidden-frameless.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .titlebar-button-container.mod-right .titlebar-button:not(:hover) {
+body.is-hidden-frameless.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .titlebar-button-container.mod-right .titlebar-button:not(:hover) {
   background-size: 100% 100%;
   transition: background-size 0.2s ease;
 }
 
-body.is-hidden-frameless.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .titlebar-button-container.mod-right .titlebar-button:not(:hover) {
+body.is-hidden-frameless.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .titlebar-button-container.mod-right .titlebar-button:not(:hover) {
   transition: background-size 0.2s ease 0.1s;
 }
 
@@ -461,20 +477,20 @@ body.barra-dinamica .workspace-ribbon .sidebar-toggle-button::after {
   visibility: visible;
 }
 
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-tabs > .workspace-tab-header-container,
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-ribbon .sidebar-toggle-button {
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .workspace-tabs > .workspace-tab-header-container,
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .workspace-ribbon .sidebar-toggle-button {
   transform: translateY(0);
   visibility: visible;
   transition: transform 0.2s ease, visibility 0s;
 }
 
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-tabs > .workspace-tab-header-container::after {
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .workspace-tabs > .workspace-tab-header-container::after {
   height: calc(2 * var(--header-height));
   visibility: hidden;
   transition: visibility 0s linear 0.4s;
 }
 
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-tabs .view-header {
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .workspace-tabs .view-header {
   opacity: 1;
   transform: translateY(0);
   transition: transform 0.2s ease 0.1s, opacity 0.2s ease 0.1s;
@@ -498,29 +514,32 @@ body.barra-dinamica .workspace-ribbon .side-dock-actions {
   transition: transform 0.2s ease 0.25s;
 }
 
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-tabs > .workspace-tab-header-container,
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-ribbon::before,
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-ribbon .sidebar-toggle-button {
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .workspace-tabs > .workspace-tab-header-container,
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .workspace-ribbon::before,
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .workspace-ribbon .sidebar-toggle-button {
   transform: translateY(0);
   visibility: visible;
   transition: transform 0.2s ease 0.1s, visibility 0s linear 0.1s;
 }
 
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-ribbon .side-dock-actions {
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .workspace-ribbon .side-dock-actions {
   transform: translateY(var(--header-height));
   transition: transform 0.2s ease;
 }
 
-body.barra-dinamica .workspace-tabs:has(.workspace-leaf-content:is([data-type="file-explorer"], [data-type="notebook-navigator"])) > .workspace-tab-container {
+body.barra-dinamica .workspace-tabs:has(.workspace-leaf-content:is([data-type="file-explorer"], [data-type="notebook-navigator"])) > .workspace-tab-container,
+body.barra-dinamica .mod-right-split .workspace-tabs > .workspace-tab-container {
   border-top: 0 solid transparent;
   transition: border-top-width 0.2s ease 0.15s;
 }
 
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-tabs:has(.workspace-leaf-content:is([data-type="file-explorer"], [data-type="notebook-navigator"])) > .workspace-tab-container {
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .workspace-tabs:has(.workspace-leaf-content:is([data-type="file-explorer"], [data-type="notebook-navigator"])) > .workspace-tab-container,
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .mod-right-split .workspace-tabs > .workspace-tab-container {
   border-top-width: var(--header-height);
 }
 
-body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover) .workspace-tabs:has(.workspace-leaf-content:is([data-type="file-explorer"], [data-type="notebook-navigator"])) > .workspace-tab-container {
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .workspace-tabs:has(.workspace-leaf-content:is([data-type="file-explorer"], [data-type="notebook-navigator"])) > .workspace-tab-container,
+body.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .mod-right-split .workspace-tabs > .workspace-tab-container {
   transition: border-top-width 0.2s ease 0.1s;
 }
 
