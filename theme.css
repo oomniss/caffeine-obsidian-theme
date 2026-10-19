@@ -43,7 +43,7 @@ settings:
         id: font-text-theme
         title: Body text font
         type: variable-text
-        default: '"Geist", system-ui, sans-serif'
+        default: '"DM Sans", "Noto Sans", "Geist", var(--font-default)'
     -
         id: inline-title-font
         title: Note title font
@@ -243,7 +243,8 @@ settings:
 */
 
 body {
-  --font-text-theme: "Geist", system-ui, sans-serif;
+  --font-text-theme: "DM Sans 14pt", "Noto Sans", "Geist", var(--font-default);
+  --font-interface-theme: var(--font-text-theme);
 
   --inline-title-font: "EB Garamond", Garamond, Georgia, serif;
   --inline-title-size: 22pt;
@@ -266,7 +267,7 @@ body {
   --link-external-decoration-hover: none;
   --link-external-decoration-active: none;
 
-  --font-monospace: "JetBrains Mono", monospace;
+  --font-monospace: "Fira Code", "JetBrains Mono", "Noto Sans Mono", var(--font-monospace-default);
 
   --linha-contraste: 22%;
   --linha-cor: color-mix(in srgb, var(--text-normal) var(--linha-contraste), var(--background-primary));
@@ -759,6 +760,14 @@ body.hiperlink-normal .markdown-source-view.mod-cm6 .cm-url .cm-underline {
 .markdown-source-view .cm-inline-code,
 .cm-editor .cm-content .cm-inline-code {
   color: var(--inline-code-color);
+}
+
+.markdown-rendered :is(h1, h2, h3, h4, h5, h6) code {
+  font-size: 0.8em;
+}
+
+.markdown-source-view.mod-cm6 .cm-editor :is(.HyperMD-header-1, .HyperMD-header-2, .HyperMD-header-3, .HyperMD-header-4, .HyperMD-header-5, .HyperMD-header-6) .cm-inline-code {
+  zoom: 0.8;
 }
 
 .metadata-properties-heading .metadata-properties-title {
