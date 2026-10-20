@@ -206,23 +206,17 @@ settings:
     -
         id: titulo-janela
         title: Title bar text
-        description: Choose which parts of the title bar text are shown, or hide it and center the Obsidian icon
+        description: Choose whether to show or hide the title bar text, or center the Obsidian icon. Only on "Obsidian Frame" interface.
         type: class-select
         allowEmpty: false
-        default: titulo-versao
+        default: titulo-todos
         options:
             -
-                label: Default (all three)
+                label: Default
                 value: titulo-todos
             -
                 label: None
                 value: titulo-nenhum
-            -
-                label: Vault name only
-                value: titulo-vault
-            -
-                label: Obsidian version only
-                value: titulo-versao
             -
                 label: Centered Obsidian icon
                 value: titulo-logo
@@ -273,8 +267,6 @@ body {
   --linha-cor: color-mix(in srgb, var(--text-normal) var(--linha-contraste), var(--background-primary));
 
   --zona-ativacao: var(--header-height);
-  --titulo-texto-vault: "Obsidian-vault";
-  --titulo-texto-versao: "Obsidian 1.14.4";
 }
 
 body.propriedades-oculta {
@@ -380,22 +372,6 @@ body.titulo-logo .titlebar-button.mod-logo {
   transform: translateX(-50%);
 }
 
-body:is(.titulo-vault, .titulo-versao) .titlebar-text {
-  font-size: 0;
-}
-
-body:is(.titulo-vault, .titulo-versao) .titlebar-text::before {
-  font-size: var(--font-ui-small);
-}
-
-body.titulo-vault .titlebar-text::before {
-  content: var(--titulo-texto-vault);
-}
-
-body.titulo-versao .titlebar-text::before {
-  content: var(--titulo-texto-versao);
-}
-
 body.is-hidden-frameless.barra-dinamica .workspace-tab-header-container-inner {
   -webkit-app-region: no-drag;
 }
@@ -424,6 +400,10 @@ body.is-hidden-frameless.barra-dinamica:not(.is-popout-window, .is-popout-modal,
   background-position: top;
   background-size: 100% 0;
   transition: background-size 0.2s ease 0.15s;
+}
+
+body.is-hidden-frameless.barra-dinamica:not(.is-popout-window, .is-popout-modal, .starter):not(.is-fullscreen):has(.mod-right-split:not(.is-sidedock-collapsed)) .titlebar-button-container.mod-right .titlebar-button:not(:hover) {
+  background-color: var(--background-secondary);
 }
 
 body.is-hidden-frameless.barra-dinamica:has(.workspace-tab-header-container:hover, .view-header:hover, .workspace-ribbon .sidebar-toggle-button:hover, .workspace-leaf-content[data-type="file-explorer"] .nav-header:hover, .workspace-leaf-content[data-type="notebook-navigator"] .nn-pane-header:hover, .mod-right-split .workspace-leaf-content .nav-header:hover) .titlebar-button-container.mod-right .titlebar-button:not(:hover) {
@@ -574,6 +554,12 @@ body.barra-dinamica .workspace-split.mod-right-split > .workspace-leaf-resize-ha
   z-index: 5;
 }
 
+body:not(.barra-dinamica) .workspace-split.mod-left-split > .workspace-leaf-resize-handle,
+body:not(.barra-dinamica) .workspace-split.mod-right-split > .workspace-leaf-resize-handle {
+  top: var(--header-height);
+  height: calc(100% - var(--header-height));
+}
+
 body.barra-status-dinamica .status-bar {
   opacity: 0;
   transition: opacity 0.2s ease;
@@ -597,8 +583,8 @@ body.barra-status-dinamica .status-bar:hover {
   --background-modifier-border-hover: #2F2922;
   --background-modifier-form-field: #25201B;
 
-  --text-normal: #E4DFDA;
-  --text-inactive: #BEB7AF;
+  --text-normal: #EBD7CE;
+  --text-inactive: #B7A39A;
   --text-muted: #9A938B;
   --text-faint: #6F6A63;
 
@@ -620,7 +606,7 @@ body.barra-status-dinamica .status-bar:hover {
   --interactive-hover: #FCFBF9;
 
   --text-normal: #25201B;
-  --text-inactive: #504841;
+  --text-inactive: #453E38;
   --text-muted: #746C65;
   --text-faint: #9C9690;
 
@@ -640,6 +626,11 @@ body.paleta-cinza.theme-dark {
   --background-modifier-border: #202020;
   --background-modifier-border-hover: #292929;
   --background-modifier-form-field: #202020;
+
+  --text-normal: #DDDDDD;
+  --text-inactive: #A8A8A8;
+  --text-muted: #939393;
+  --text-faint: #696969;
 }
 
 body.paleta-cinza.theme-light {
@@ -655,6 +646,11 @@ body.paleta-cinza.theme-light {
 
   --interactive-normal: #F6F6F6;
   --interactive-hover: #FBFBFB;
+
+  --text-normal: #202020;
+  --text-inactive: #3F3F3F;
+  --text-muted: #6C6C6C;
+  --text-faint: #969696;
 }
 
 body.paleta-personalizada {
@@ -675,6 +671,11 @@ body.paleta-personalizada.theme-dark {
   --background-modifier-border: hsl(var(--paleta-h), var(--paleta-s), 12.5%);
   --background-modifier-border-hover: hsl(var(--paleta-h), var(--paleta-s), 16%);
   --background-modifier-form-field: hsl(var(--paleta-h), var(--paleta-s), 12.5%);
+
+  --text-normal: hsl(var(--paleta-h), var(--paleta-s), 86.5%);
+  --text-inactive: hsl(var(--paleta-h), var(--paleta-s), 66%);
+  --text-muted: hsl(var(--paleta-h), var(--paleta-s), 57.5%);
+  --text-faint: hsl(var(--paleta-h), var(--paleta-s), 41%);
 }
 
 body.paleta-personalizada.theme-light {
@@ -690,6 +691,11 @@ body.paleta-personalizada.theme-light {
 
   --interactive-normal: hsl(var(--paleta-h), var(--paleta-s), 96.5%);
   --interactive-hover: hsl(var(--paleta-h), var(--paleta-s), 98.5%);
+
+  --text-normal: hsl(var(--paleta-h), var(--paleta-s), 12.5%);
+  --text-inactive: hsl(var(--paleta-h), var(--paleta-s), 24.5%);
+  --text-muted: hsl(var(--paleta-h), var(--paleta-s), 42.5%);
+  --text-faint: hsl(var(--paleta-h), var(--paleta-s), 59%);
 }
 
 .markdown-source-view .cm-line {
@@ -783,12 +789,12 @@ body.hiperlink-normal .markdown-source-view.mod-cm6 .cm-url .cm-underline {
   padding: 0.6em 0;
   margin: 1.5em 0;
   font-family: "STIX Two Text", serif;
-  color: var(--text-normal);
+  color: var(--text-inactive);
   --callout-color: var(--text-normal-rgb, 0, 0, 0);
 }
 
 .theorem-callout > .callout-title {
-  color: var(--text-normal);
+  color: var(--text-inactive);
 }
 
 .theorem-callout > .callout-title > .callout-icon {
@@ -994,7 +1000,7 @@ body.teorema-aba .theorem-callout > .callout-title {
   padding: 0 0.75em;
   margin: 0 0 0.6em;
   background-color: var(--teorema-aba-cor);
-  color: var(--text-normal);
+  color: var(--text-inactive);
   line-height: 1.25;
 }
 

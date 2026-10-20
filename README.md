@@ -1,10 +1,28 @@
 <h1 style="text-align: center; font-family: 'EB Garamond', Georgia, serif; font-style: italic; font-weight: bold;">caffeine</h1>
 
-![caffeine theme overview](Imagens/overview.webp)
+![caffeine theme overview](Imagens/overview.png)
 
 A warm and comfortable theme for Obsidian, designed to make your notes easier on the eyes without sacrificing flexibility. Built around a carefully crafted brown palette, <span style="font-family: 'EB Garamond', Georgia, serif;"><strong><em>caffeine</em></strong></span> also offers a neutral gray palette and a fully customizable option. With the latter, you choose a single color, and the theme automatically generates a cohesive palette based on its hue and saturation, adapting it to both light and dark modes.
 
-Through the **Style Settings** plugin, you can customize the color palette, typography, table styles, and more. <span style="font-family: 'EB Garamond', Georgia, serif;"><strong><em>caffeine</em></strong></span> is also compatible with the **LaTeX-like Theorem & Equation Referencer** plugin, offering six theorem layouts and additional options for customizing theorem text and titles.
+Through the **Style Settings** plugin, you can customize the color palette, typography, table styles, and more. <span style="font-family: 'EB Garamond', Georgia, serif;"><strong><em>caffeine</em></strong></span> is also compatible with the **LaTeX-like Theorem & Equation Referencer** plugin, offering seven theorem layouts.
+
+# Bars
+
+The tab bar has been redesigned to accommodate floating tabs, along with a centered file breadcrumb.
+
+![Tab bar](Imagens/tab-bar.png)
+
+Through **Style Settings**, you can restore the default Obsidian design for the tab bar.
+
+In addition, the tab bar now has a dynamic behavior: by default, it stays hidden and appears when you hover over the top of the screen.
+
+![Dynamic bar](Imagens/dynamic-bar.gif)
+
+The status bar works the same way: hidden by default, it appears when you hover over it.
+
+![Dynamic status bar](Imagens/dynamic-status-bar.gif)
+
+The dynamic behavior of the top bars and the status bar can be turned off in the **Style Settings** options.
 
 # Palettes
 
@@ -20,7 +38,7 @@ The **Custom Palette** lets you create a color scheme based on any color of your
 
 # Theorem Styles
 
-The theme is compatible with the LaTeX-like Theorem & Equation Referencer plugin and offers six distinct theorem styles: **Ruled Header**, **Rules**, **Side bar**, **Classic**, **Tabbed Frame**, and **Header band**. Through **Style Settings**, you can also customize theorem text, choosing between italic and upright styles, as well as the weight of theorem types and titles, with bold and normal options.
+The theme is compatible with the LaTeX-like Theorem & Equation Referencer plugin and offers seven distinct theorem styles: **Rules**, **Frame**, **Classic**, **Side Bar**, **Ruled Header**, **Header band** and **Tabbed Frame**. Through **Style Settings**, you can also customize theorem text, choosing between italic and upright styles, as well as the weight of theorem types and titles, with bold and normal options.
 
 ![Theorem styles](Imagens/theorem.png)
 
@@ -36,7 +54,17 @@ Two table styles are available through Style Settings: **Horizontal lines** and 
 
 For the theme to work as intended, it is recommended to install the following fonts:
 
-- [EB Garamond](https://fonts.google.com/specimen/EB+Garamond?icon.size=24&icon.color=%23e3e3e3) — Used for note titles and H1 headings.
-- [Geist](https://fonts.google.com/specimen/Geist?icon.size=24&icon.color=%23e3e3e3) — Used as the main font for note text and the general interface.
-- [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono?icon.size=24&icon.color=%23e3e3e3&query=jet) — Used for code blocks and inline code.
-- [STIX Two Math](https://fonts.google.com/specimen/STIX+Two+Math?icon.size=24&icon.color=%23e3e3e3&query=stix) — Used for mathematical notation and equations.
+- For note titles:
+	1. EB Garamond
+	2. Garamond
+	3. Georgia
+- For text and interface:
+	1. DM Sans
+	2. Noto Sans
+	3. Geist
+	4. Obsidian default
+- For monospace:
+	1. Fira Code
+	2. JetBrains Mono
+	3. Noto Sans Mono
+	4. Obsidian default
