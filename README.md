@@ -4,7 +4,9 @@
 
 A warm and comfortable theme for Obsidian, designed to make your notes easier on the eyes without sacrificing flexibility. Built around a carefully crafted brown palette, <span style="font-family: 'EB Garamond', Georgia, serif;"><strong><em>caffeine</em></strong></span> also offers a neutral gray palette and a fully customizable option. With the latter, you choose a single color, and the theme automatically generates a cohesive palette based on its hue and saturation, adapting it to both light and dark modes.
 
-Through the **Style Settings** plugin, you can customize the color palette, typography, table styles, and more. <span style="font-family: 'EB Garamond', Georgia, serif;"><strong><em>caffeine</em></strong></span> is also compatible with the **LaTeX-like Theorem & Equation Referencer** plugin, offering seven theorem layouts.
+Through the **Style Settings** plugin, you can customize the color palette, typography, table styles, and more. <span style="font-family: 'EB Garamond', Georgia, serif;"><strong><em>caffeine</em></strong></span> is also compatible with the **LaTeX-like Theorem & Equation Referencer** plugin, offering seven theorem layouts and additional options for customizing theorem text and titles.
+
+The [**Style Settings**](https://community.obsidian.md/plugins/obsidian-style-settings) plugin is required for the theme to work correctly. Download it from the Obsidian community plugins page.
 
 # Bars
 
@@ -52,19 +54,19 @@ Two table styles are available through Style Settings: **Horizontal lines** and 
 
 # Fonts
 
-For the theme to work as intended, it is recommended to install the following fonts:
+The theme applies fonts in the order listed below, which is also their order of priority: it uses the first font of each category that is installed on your system and falls back to the next one otherwise. For the theme to work as intended, download and install the fonts through Google Fonts, preferably starting with the first of each category.
 
 - For note titles:
-	1. EB Garamond
-	2. Garamond
-	3. Georgia
+	1. [EB Garamond](https://fonts.google.com/specimen/EB+Garamond)
+	2. Garamond (system font)
+	3. Georgia (system font)
 - For text and interface:
-	1. DM Sans
-	2. Noto Sans
-	3. Geist
+	1. [DM Sans](https://fonts.google.com/specimen/DM+Sans)
+	2. [Noto Sans](https://fonts.google.com/specimen/Noto+Sans)
+	3. [Geist](https://fonts.google.com/specimen/Geist)
 	4. Obsidian default
 - For monospace:
-	1. Fira Code
-	2. JetBrains Mono
-	3. Noto Sans Mono
+	1. [Fira Code](https://fonts.google.com/specimen/Fira+Code)
+	2. [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono)
+	3. [Noto Sans Mono](https://fonts.google.com/specimen/Noto+Sans+Mono)
 	4. Obsidian default
