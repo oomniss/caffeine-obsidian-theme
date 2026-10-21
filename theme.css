@@ -281,6 +281,9 @@ body.abas-flutuantes {
   --tab-radius-active: var(--radius-m);
   --tab-divider-color: transparent;
   --aba-contorno-cor: var(--background-modifier-border-hover);
+  --aba-contorno-largura: 1px;
+  --aba-espaco: 4px;
+  --aba-divisor-largura: 1px;
 }
 
 .inline-title {
@@ -294,7 +297,7 @@ body.abas-flutuantes .workspace-tab-header-container {
 
 body.abas-flutuantes .workspace-tab-header-container-inner {
   margin: 2px 0;
-  gap: 4px;
+  gap: var(--aba-espaco);
 }
 
 body.abas-flutuantes .workspace-tab-header {
@@ -302,7 +305,7 @@ body.abas-flutuantes .workspace-tab-header {
 }
 
 body.abas-flutuantes .mod-root .workspace-tab-header {
-  border: 1px solid transparent;
+  border: var(--aba-contorno-largura) solid transparent;
 }
 
 body.abas-flutuantes .workspace-tab-header.is-active {
@@ -320,11 +323,19 @@ body.abas-flutuantes .workspace-tab-header.is-active::after {
   display: none;
 }
 
-body.abas-flutuantes .mod-root .workspace-tab-header:not(.is-active):has(+ .workspace-tab-header:not(.is-active)) {
-  background-image: linear-gradient(var(--aba-contorno-cor), var(--aba-contorno-cor));
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: 1px 44%;
+body.abas-flutuantes .mod-root .workspace-tab-header:not(.is-active) + .workspace-tab-header:not(.is-active) {
+  position: relative;
+}
+
+body.abas-flutuantes .mod-root .workspace-tab-header:not(.is-active) + .workspace-tab-header:not(.is-active)::before {
+  content: "";
+  position: absolute;
+  top: 28%;
+  bottom: 28%;
+  left: calc(-1 * (var(--aba-espaco) + var(--aba-divisor-largura) + 2 * var(--aba-contorno-largura)));
+  width: var(--aba-divisor-largura);
+  background-color: var(--aba-contorno-cor);
+  pointer-events: none;
 }
 
 body.abas-flutuantes .workspace-tab-header.is-active .workspace-tab-header-inner {
@@ -917,10 +928,6 @@ body.teorema-cabecalho .theorem-callout > .callout-content > p {
   margin: 0;
 }
 
-body.teorema-cabecalho .theorem-callout > .callout-content > p + p {
-  text-indent: 1.5em;
-}
-
 body.teorema-faixa .theorem-callout {
   border: 0.75pt solid var(--text-faint);
   border-radius: 3px;
@@ -958,10 +965,6 @@ body.teorema-faixa .theorem-callout > .callout-content {
 body.teorema-faixa .theorem-callout > .callout-content > p {
   display: block;
   margin: 0;
-}
-
-body.teorema-faixa .theorem-callout > .callout-content > p + p {
-  text-indent: 1.5em;
 }
 
 body.teorema-aba .theorem-callout {
