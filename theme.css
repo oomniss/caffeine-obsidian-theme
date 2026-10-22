@@ -267,6 +267,9 @@ body {
   --linha-cor: color-mix(in srgb, var(--text-normal) var(--linha-contraste), var(--background-primary));
 
   --zona-ativacao: var(--header-height);
+
+  --anim-duration-moderate: 320ms;
+  --anim-motion-baseline: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 body.propriedades-oculta {
@@ -324,18 +327,11 @@ body.abas-flutuantes .workspace-tab-header.is-active::after {
 }
 
 body.abas-flutuantes .mod-root .workspace-tab-header:not(.is-active) + .workspace-tab-header:not(.is-active) {
-  position: relative;
-}
-
-body.abas-flutuantes .mod-root .workspace-tab-header:not(.is-active) + .workspace-tab-header:not(.is-active)::before {
-  content: "";
-  position: absolute;
-  top: 28%;
-  bottom: 28%;
-  left: calc(-1 * (var(--aba-espaco) + var(--aba-divisor-largura) + 2 * var(--aba-contorno-largura)));
-  width: var(--aba-divisor-largura);
-  background-color: var(--aba-contorno-cor);
-  pointer-events: none;
+  background-image: linear-gradient(var(--linha-cor), var(--linha-cor));
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  background-position: left center;
+  background-size: var(--aba-divisor-largura) 44%;
 }
 
 body.abas-flutuantes .workspace-tab-header.is-active .workspace-tab-header-inner {
@@ -578,6 +574,74 @@ body.barra-status-dinamica .status-bar {
 
 body.barra-status-dinamica .status-bar:hover {
   opacity: 1;
+}
+
+.sidebar-toggle-icon-inner {
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline);
+}
+
+.sidebar-toggle-button .clickable-icon:hover .sidebar-toggle-icon-inner {
+  width: 24%;
+}
+
+.workspace.is-primary-sidedock-open .sidebar-toggle-button.mod-left .clickable-icon:hover .sidebar-toggle-icon-inner,
+.workspace.is-secondary-sidedock-open .sidebar-toggle-button.mod-right .clickable-icon:hover .sidebar-toggle-icon-inner {
+  width: revert-layer;
+}
+
+body:not(.is-mobile) .mod-sidedock.mod-left-split .workspace-sidedock-vault-profile {
+  border-top: none;
+}
+
+body:not(.is-mobile) .mod-sidedock.mod-left-split .workspace-drawer-vault-switcher,
+body:not(.is-mobile) .mod-sidedock.mod-left-split .workspace-drawer-vault-actions .clickable-icon:first-child {
+  transition: opacity var(--anim-duration-fast);
+}
+
+body:not(.is-mobile) .mod-sidedock.mod-left-split .workspace-sidedock-vault-profile:not(:hover) .workspace-drawer-vault-switcher:not(.has-active-menu),
+body:not(.is-mobile) .mod-sidedock.mod-left-split .workspace-sidedock-vault-profile:not(:hover) .workspace-drawer-vault-actions .clickable-icon:first-child {
+  opacity: 0;
+}
+
+.workspace-leaf-content[data-type="file-explorer"] {
+  --nav-indentation-guide-width: 0px;
+  --nav-item-children-margin-start: 24px;
+}
+
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header .nav-buttons-container {
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header {
+  padding-bottom: 12px;
+}
+
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header,
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header .nav-buttons-container,
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header .nav-action-button,
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header svg {
+  transition: var(--anim-duration-moderate) var(--anim-motion-baseline), background-color var(--anim-duration-fast);
+}
+
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header:not(:hover) .nav-buttons-container {
+  gap: 4px;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header:not(:hover) .nav-buttons-container .nav-action-button {
+  min-width: 0;
+  padding: 2px;
+  border-radius: 50%;
+  background-color: color-mix(in srgb, var(--inline-code-color) 35%, var(--background-secondary));
+  box-shadow: none;
+}
+
+body:not(.is-mobile) .workspace-leaf-content[data-type="file-explorer"] .nav-header:not(:hover) .nav-buttons-container svg {
+  width: 0;
+  height: 0;
 }
 
 .theme-dark {
